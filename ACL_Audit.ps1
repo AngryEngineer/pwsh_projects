@@ -1,7 +1,8 @@
 param (
 
+    [ValidateScript({Test-Path $_ -PathType 'Container'})]
+    [string] $CSVOut,
     [parameter(Mandatory = $true)]
-
     [String]$Path
 
 )
@@ -19,6 +20,17 @@ If (!(Test-Path -Path $Path)) {
     Write-Host -NoNewline "Path not valid:" $Path 
     Write-Host ""
     exit
+}
+if ($CSVOut -eq "") {
+    Write-Host -NoNewline "Path not valid:" $CSVOut
+    Write-Host ""
+    exit 
+    
+}
+Else{
+    Try{
+        
+    }
 }
 
 $Tree = Get-ChildItem $Path -Recurse -Force
