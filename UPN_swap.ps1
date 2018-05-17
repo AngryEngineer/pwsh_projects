@@ -6,6 +6,8 @@ param (
     [String]$ChangeTo
 )
 
+Import-Module "activedirectory"-Cmdlet Get-ADuser, Set-ADuser -ErrorAction Stop
+
 If ($ChangeFrom -ne "") {
     $ADUsers = Get-ADUser -Filter {UserPrincipalName -like $ChangeFrom } -Properties userPrincipalName -ResultSetSize $null
 }
@@ -26,7 +28,10 @@ If ($ADUsers -ne $null) {
                 #Set-ADUser -UserPrincipalName $newUpn
             }
             catch {
-                Write-Host -ForegroundColor Yellow "Failed!"
+                Write-Host -ForegroundColor Yellow -NoNewline " - Failed!"
+            }
+            Finally{
+                Write-Host ""
             }
         } 
         
