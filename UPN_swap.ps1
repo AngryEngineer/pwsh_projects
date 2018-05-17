@@ -28,7 +28,8 @@ If ($ADUsers -ne $null) {
                 #Set-ADUser -UserPrincipalName $newUpn
             }
             catch {
-                Write-Host -ForegroundColor Yellow -NoNewline " - Failed!"
+                Write-Host -NoNewline " - "
+                Write-Host -ForegroundColor Yellow -NoNewline "Failed!"
             }
             Finally{
                 Write-Host ""
