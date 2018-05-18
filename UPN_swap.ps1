@@ -20,18 +20,18 @@ If ($ADUsers -ne $null) {
         $newUpn = $User.UserPrincipalName.Replace( (($User.UserPrincipalName.Split("@"))[1]) , $ChangeTo)
         
         Write-Host -NoNewline  "Changing "
-        Write-Host -ForegroundColor Red -NoNewline $User.UserPrincipalName
+        Write-Host -NoNewline -ForegroundColor Yellow $User.UserPrincipalName
         Write-Host -NoNewline " to "
-        Write-Host -ForegroundColor Green $newUpn
+        Write-Host -NoNewline -ForegroundColor Green $newUpn
         If (!($dry)) {
             try {
-                #Set-ADUser -UserPrincipalName $newUpn
+                Set-ADUser -Identity $User.SID -UserPrincipalName $newUpn
             }
             catch {
                 Write-Host -NoNewline " - "
-                Write-Host -ForegroundColor Yellow -NoNewline "Failed!"
+                Write-Host -ForegroundColor Red -NoNewline "Failed!"
             }
-            Finally{
+            Finally {
                 Write-Host ""
             }
         } 
