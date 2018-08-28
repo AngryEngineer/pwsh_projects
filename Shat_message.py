@@ -7,7 +7,7 @@ from json import dumps
 def main():
     url = ''
     bot_message = {
-        'text' : '<users/all> *Matthew* is *unable* to awnser the phone!!'}
+        'text' : '<users/all> *person* is *unable* to awnser the phone!!'}
 
     message_headers = { 'Content-Type': 'application/json; charset=UTF-8'}
 
